@@ -56,7 +56,7 @@ export class AblAmbulanceWlApp {
     return (
       <Host>
         {element === 'editor' ? (
-          <abl-ambulance-wl-editor entry-id={entryId} oneditor-closed={() => navigate('./list')}></abl-ambulance-wl-editor>
+          <abl-ambulance-wl-editor entry-id={entryId} oneditor-closed={() => navigate('./list')} ambulance-id={this.ambulanceId} api-base={this.apiBase}></abl-ambulance-wl-editor>
         ) : (
           <abl-ambulance-wl-list
             ambulance-id={this.ambulanceId}
