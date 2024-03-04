@@ -13,8 +13,9 @@ declare global {
 })
 export class AblAmbulanceWlApp {
   @State() private relativePath = '';
-
   @Prop() basePath: string = '';
+  @Prop() apiBase: string;
+  @Prop() ambulanceId: string;
 
   componentWillLoad() {
     const baseUri = new URL(this.basePath, document.baseURI || '/').pathname;
@@ -57,7 +58,11 @@ export class AblAmbulanceWlApp {
         {element === 'editor' ? (
           <abl-ambulance-wl-editor entry-id={entryId} oneditor-closed={() => navigate('./list')}></abl-ambulance-wl-editor>
         ) : (
-          <abl-ambulance-wl-list onentry-clicked={(ev: CustomEvent<string>) => navigate('./entry/' + ev.detail)}></abl-ambulance-wl-list>
+          <abl-ambulance-wl-list
+            ambulance-id={this.ambulanceId}
+            api-base={this.apiBase}
+            onentry-clicked={(ev: CustomEvent<string>) => navigate('./entry/' + ev.detail)}
+          ></abl-ambulance-wl-list>
         )}
       </Host>
     );
